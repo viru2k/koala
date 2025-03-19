@@ -1,0 +1,26 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@koala/styles": ["styles/src/index.ts"],
+      "login_app/Routes": ["login-app/src/app/remote-entry/entry.routes.ts"],
+      "schedule_app/Routes": [
+        "schedule-app/src/app/remote-entry/entry.routes.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

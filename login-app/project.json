@@ -1,0 +1,102 @@
+{
+  "name": "login-app",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "login-app/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/login-app",
+        "index": "login-app/src/index.html",
+        "main": "login-app/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "login-app/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "login-app/public"
+          }
+        ],
+        "styles": ["login-app/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "login-app/webpack.config.ts"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "login-app/webpack.prod.config.ts"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nx/angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "login-app:build:production"
+        },
+        "development": {
+          "buildTarget": "login-app:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "publicHost": "http://localhost:4200"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "login-app:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "login-app:build",
+        "watch": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "login-app:build:development"
+        },
+        "production": {
+          "buildTarget": "login-app:build:production"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+// libs/styles/src/lib/_responsive.scss
+@media (max-width: $breakpoint-mobile) {
+  // Estilos para móviles
+}
+
+@media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-tablet) {
+  // Estilos para tablets
+}
+
+@media (min-width: $breakpoint-desktop) {
+  // Estilos para escritorio
+}

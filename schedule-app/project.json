@@ -1,0 +1,102 @@
+{
+  "name": "schedule-app",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "schedule-app/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/schedule-app",
+        "index": "schedule-app/src/index.html",
+        "main": "schedule-app/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "schedule-app/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "schedule-app/public"
+          }
+        ],
+        "styles": ["schedule-app/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "schedule-app/webpack.config.ts"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "schedule-app/webpack.prod.config.ts"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nx/angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "schedule-app:build:production"
+        },
+        "development": {
+          "buildTarget": "schedule-app:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "publicHost": "http://localhost:4200"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "schedule-app:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "schedule-app:build",
+        "watch": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "schedule-app:build:development"
+        },
+        "production": {
+          "buildTarget": "schedule-app:build:production"
+        }
+      }
+    }
+  }
+}

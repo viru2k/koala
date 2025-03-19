@@ -16,9 +16,17 @@
     "baseUrl": ".",
     "paths": {
       "@koala/styles": ["styles/src/index.ts"],
-      "login_app/Routes": ["login-app/src/app/remote-entry/entry.routes.ts"],
+      "koala_shell/Routes": [
+        "/apps/koala-shell/src/app/remote-entry/entry.routes.ts"
+      ],
+      "login_app/Routes": [
+        "/apps/login-app/src/app/remote-entry/entry.routes.ts"
+      ],
       "schedule_app/Routes": [
-        "schedule-app/src/app/remote-entry/entry.routes.ts"
+        "/apps/schedule-app/src/app/remote-entry/entry.routes.ts"
+      ],
+      "sales/Routes": [
+        "/sales-app/src/app/app.routes.ts"
       ]
     }
   },

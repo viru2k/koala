@@ -1,3 +1,7 @@
+Crear Features
+
+npx nx generate @nrwl/angular:application login-app
+
 Configurar Module Federation
 
 
